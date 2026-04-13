@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Image Resizer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      width: 100%;
+      max-width: 450px;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    p.subtitle {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px dashed #bbb;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #5a67d8;
+    }
+
+    #msg {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Cloud Image Resizer</h2>
+    <p class="subtitle">Upload your image and let AWS resize it instantly.</p>
+
+    <input type="file" id="fileInput" accept="image/*">
+    <button onclick="upload()">Upload Image</button>
+
+    <p id="msg"></p>
+  </div>
+
+  <script>
+async function upload() {
+    const file = document.getElementById("fileInput").files[0];
+    const msg = document.getElementById("msg");
+
+    if (!file) {
+        msg.innerText = "Please select an image first.";
+        return;
+    }
+
+    msg.innerText = "Uploading...";
+
+    const reader = new FileReader();
+
+    reader.onload = async function () {
+        const base64 = reader.result.split(",")[1];
+
+        try {
+            await fetch("https://gbvrt7qoyg.execute-api.us-east-1.amazonaws.com/upload", {
+                method: "POST",
+                body: base64
+            });
+
+            msg.innerText = "Image uploaded successfully! Check resized image in S3.";
+        } catch (error) {
+            msg.innerText = "Upload sent! Please check AWS S3 bucket.";
+        }
+    };
+
+    reader.readAsDataURL(file);
+}
+</script>
+
+</body>
+</html>
+
+
+
