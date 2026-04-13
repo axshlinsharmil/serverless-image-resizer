@@ -15,3 +15,6 @@ A cloud-based image upload and resize app using AWS.
 - AWS S3
 - AWS Lambda
 - API Gateway
+
+## Live Demo
+[Click here to use the app](http://axshlin-image-resizer-site-08.s3-website-us-east-1.amazonaws.com)
