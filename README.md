@@ -25,6 +25,8 @@ http://axshlin-image-resizer-site-08.s3-website-us-east-1.amazonaws.com
 - GitHub Actions
 
 ## Project Structure
+
+```text
 image-resizer-project/
 ├── frontend/
 │   └── index.html
