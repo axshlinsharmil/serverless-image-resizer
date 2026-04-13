@@ -8,8 +8,10 @@ A cloud-based image upload and resize app using AWS.
 - Auto resize using Lambda
 - Save resized image in S3
 
+
 ## Tech Stack
+- HTML / CSS / JavaScript (Frontend)
+- Python (AWS Lambda)
 - AWS S3
 - AWS Lambda
 - API Gateway
-- HTML / JavaScript
