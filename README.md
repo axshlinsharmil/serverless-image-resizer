@@ -39,7 +39,7 @@ image-resizer-project/
 │       └── deploy.yml
 ├── README.md
 └── .gitignore
-
+```
 ## How It Works
 1. User uploads image from frontend.
 2. API Gateway sends request to Lambda upload function.
